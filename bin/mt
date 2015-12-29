@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+Signal.trap("INT") { exit 1 }
+require 'mt/error'
+
+command = ARGV.shift
+begin
+  case command
+  when "build"
+    require 'mt/cli/build'
+    cli = ::Mt::Cli::Build.new(ARGV)
+    cli.run
+  else
+    abort "invalid command specified #{command}"
+  end
+rescue ::Mt::Error => e
+  abort "ERROR #{e.message}"
+end
