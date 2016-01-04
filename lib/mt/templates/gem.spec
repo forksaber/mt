@@ -47,7 +47,10 @@ mkdir -p %{buildroot}%{bindir}
 cp -R gems/%{rbname}-%{version}/lib %{buildroot}%{gem_dir}
 cp -R cache extensions specifications %{buildroot}%{gems_dir}/
 
-if [ -e gems/%{rbname}-%{version}/bin ]; then
+if [ -e gems/%{rbname}-%{version}/exe ]; then
+  cp -R gems/%{rbname}-%{version}/exe %{buildroot}%{gem_dir}
+  cp gems/%{rbname}-%{version}/exe/* %{buildroot}%{bindir}
+elif [ -e gems/%{rbname}-%{version}/bin]; then
   cp -R gems/%{rbname}-%{version}/bin %{buildroot}%{gem_dir}
   cp gems/%{rbname}-%{version}/bin/* %{buildroot}%{bindir}
 fi
