@@ -37,7 +37,7 @@ Ruby gem %{rbname}
 %setup -T -c
 
 %build
-gem install --no-user-install --no-ri --no-rdoc --local --install-dir ./ --force %{SOURCE0}
+gem install --no-user-install -N --local --install-dir ./ --force %{SOURCE0}
 find extensions/ -name '*.so' -delete
 
 %install
